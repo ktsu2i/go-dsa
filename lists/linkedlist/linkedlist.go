@@ -28,3 +28,32 @@ func (ll *LinkedList[T]) Add(value T) {
 
 	ll.size++
 }
+
+func (ll *LinkedList[T]) Remove(index int) bool {
+	if index < 0 || index >= ll.size {
+		return false
+	}
+
+	// Remove head
+	if index == 0 {
+		ll.head = ll.head.Next
+		if ll.head == nil {
+			ll.tail = nil
+		}
+		ll.size--
+		return true
+	}
+
+	current := ll.head
+	for i := 0; i < index-1; i++ {
+		current = ll.head.Next
+	}
+
+	current.Next = current.Next.Next
+
+	if current.Next == nil {
+		ll.tail = current
+	}
+	ll.size--
+	return true
+}
