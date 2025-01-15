@@ -1,5 +1,7 @@
 package linkedlist
 
+import "errors"
+
 type Node[T any] struct {
 	Value T
 	Next  *Node[T]
@@ -56,4 +58,17 @@ func (ll *LinkedList[T]) Remove(index int) bool {
 	}
 	ll.size--
 	return true
+}
+
+func (ll *LinkedList[T]) Get(index int) (T, error) {
+	var value T
+	if index < 0 || index >= ll.size {
+		return value, errors.New("index out of bounds")
+	}
+
+	current := ll.head
+	for i := 0; i < index; i++ {
+		current = current.Next
+	}
+	return current.Value, nil
 }
