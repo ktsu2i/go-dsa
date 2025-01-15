@@ -72,3 +72,7 @@ func (ll *LinkedList[T]) Get(index int) (T, error) {
 	}
 	return current.Value, nil
 }
+
+func (ll *LinkedList[T]) Size() int {
+	return ll.size
+}
