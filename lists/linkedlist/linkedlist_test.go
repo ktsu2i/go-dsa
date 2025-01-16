@@ -26,7 +26,7 @@ func TestAdd(t *testing.T) {
 func TestRemove(t *testing.T) {
 	ll := linkedlist.New[string]()
 
-	// Remove from an empty list
+	// 1. Remove from an empty list
 	if ll.Remove(0) {
 		t.Errorf("Expected false when removing from an empty list, but got true")
 	}
@@ -40,7 +40,7 @@ func TestRemove(t *testing.T) {
 	ll.Add("D") // index: 3
 	ll.Add("E") // index: 4
 
-	// Remove head
+	// 2. Remove head
 	ok := ll.Remove(0)
 	if !ok {
 		t.Errorf("Expected true when removing head, but got false")
@@ -55,7 +55,7 @@ func TestRemove(t *testing.T) {
 		t.Errorf("Expected head to be B, but got %s", head)
 	}
 
-	// Remove value at index 1
+	// 3. Remove value at index 1
 	ok = ll.Remove(1)
 	if !ok {
 		t.Errorf("Expected true when removing value at index 1, but got false")
@@ -72,7 +72,7 @@ func TestRemove(t *testing.T) {
 		t.Errorf("Expected [B, D, E], but got [%s, %s, %s]", val1, val2, val3)
 	}
 
-	// Remove tail
+	// 4. Remove tail
 	ok = ll.Remove(2)
 	if !ok {
 		t.Errorf("Expected true when removing head, but got false")
@@ -86,7 +86,7 @@ func TestRemove(t *testing.T) {
 		t.Errorf("Expected tail to be D, but got %s", tail)
 	}
 
-	// Remove value at index out of bound
+	// 5. Remove value at index out of bound
 	ok = ll.Remove(9999)
 	if ok {
 		t.Errorf("Expected false for index out of bound, but got true")
