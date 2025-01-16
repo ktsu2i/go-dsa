@@ -143,3 +143,34 @@ func TestGet(t *testing.T) {
 		t.Errorf("Expected error for index out of bound, but got nil")
 	}
 }
+
+func TestSize(t *testing.T) {
+	ll := linkedlist.New[string]()
+
+	// 1. Empty list
+	if ll.Size() != 0 {
+		t.Errorf("Expected size 0 for an empty list, but got %d", ll.Size())
+	}
+
+	// 2. Size 1
+	ll.Add("A") // [A]
+	if ll.Size() != 1 {
+		t.Errorf("Expected size 1 after adding one value, but got %d", ll.Size())
+	}
+
+	// 3. Size 3
+	ll.Add("B") // [A, B]
+	ll.Add("C") // [A, B, C]
+	if ll.Size() != 3 {
+		t.Errorf("Expected size 3 after adding three values, but got %d", ll.Size())
+	}
+
+	// 4. Reduce size -> Size 2
+	ok := ll.Remove(1) // [A, C]
+	if !ok {
+		t.Errorf("Expected true when removing value at index 1, but got false")
+	}
+	if ll.Size() != 2 {
+		t.Errorf("Expected size 2 after removing one value, but got %d", ll.Size())
+	}
+}
