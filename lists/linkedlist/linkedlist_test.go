@@ -96,3 +96,50 @@ func TestRemove(t *testing.T) {
 		t.Errorf("Expected size 2 after index out of bound error, but got %d", ll.Size())
 	}
 }
+
+func TestGet(t *testing.T) {
+	ll := linkedlist.New[string]()
+
+	// 1. Get from an empty list
+	_, err := ll.Get(0)
+	if err == nil {
+		t.Errorf("Expected error when getting from an empty list, but got nil")
+	}
+
+	ll.Add("A")
+	ll.Add("B")
+	ll.Add("C")
+
+	// 2. Get head
+	head, err := ll.Get(0)
+	if err != nil {
+		t.Errorf("Unexpected error for Get(0): %v", err)
+	}
+	if head != "A" {
+		t.Errorf("Expected head to be A, but got %s", head)
+	}
+
+	// 3. Get value at index 1
+	val, err := ll.Get(1)
+	if err != nil {
+		t.Errorf("Unexpected error for Get(1): %v", err)
+	}
+	if val != "B" {
+		t.Errorf("Expected B at index 1, but got %s", val)
+	}
+
+	// 4. Get tail
+	tail, err := ll.Get(2)
+	if err != nil {
+		t.Errorf("Unexpected error for Get(2): %v", err)
+	}
+	if tail != "C" {
+		t.Errorf("Expected tail to be C, but got %s", tail)
+	}
+
+	// 5. Get value at index out of bound
+	_, err = ll.Get(9999)
+	if err == nil {
+		t.Errorf("Expected error for index out of bound, but got nil")
+	}
+}
