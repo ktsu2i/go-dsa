@@ -24,7 +24,7 @@ func (ll *LinkedList[T]) Add(value T) {
 		ll.head = node
 		ll.tail = node
 	} else {
-		ll.head.Next = node
+		ll.tail.Next = node
 		ll.tail = node
 	}
 
@@ -48,11 +48,10 @@ func (ll *LinkedList[T]) Remove(index int) bool {
 
 	current := ll.head
 	for i := 0; i < index-1; i++ {
-		current = ll.head.Next
+		current = current.Next
 	}
 
 	current.Next = current.Next.Next
-
 	if current.Next == nil {
 		ll.tail = current
 	}
