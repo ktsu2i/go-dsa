@@ -18,7 +18,7 @@ func TestAdd(t *testing.T) {
 	expected := []string{"A", "B", "C"}
 	for i := 0; i < ll.Size(); i++ {
 		if val, _ := ll.Get(i); val != expected[i] {
-			t.Errorf("At index %d, expected %v, got %v", i, expected[i], val)
+			t.Errorf("At index %d, expected %s, got %s", i, expected[i], val)
 		}
 	}
 }
@@ -52,7 +52,7 @@ func TestRemove(t *testing.T) {
 	// Check if head is B at this point
 	head, _ := ll.Get(0)
 	if head != "B" {
-		t.Errorf("Expected head to be B, but got %v", head)
+		t.Errorf("Expected head to be B, but got %s", head)
 	}
 
 	// Remove value at index 1
@@ -69,7 +69,7 @@ func TestRemove(t *testing.T) {
 	val2, _ := ll.Get(1)
 	val3, _ := ll.Get(2)
 	if val1 != "B" || val2 != "D" || val3 != "E" {
-		t.Errorf("Expected [B, D, E], but got [%v, %v, %v]", val1, val2, val3)
+		t.Errorf("Expected [B, D, E], but got [%s, %s, %s]", val1, val2, val3)
 	}
 
 	// Remove tail
@@ -83,7 +83,7 @@ func TestRemove(t *testing.T) {
 	}
 	tail, _ := ll.Get(1)
 	if tail != "D" {
-		t.Errorf("Expected tail to be D, but got %v", tail)
+		t.Errorf("Expected tail to be D, but got %s", tail)
 	}
 
 	// Remove value at index out of bound
