@@ -2,14 +2,14 @@ package linkedlist
 
 import "errors"
 
-type Node[T any] struct {
+type node[T any] struct {
 	Value T
-	Next  *Node[T]
+	Next  *node[T]
 }
 
 type LinkedList[T any] struct {
-	head *Node[T]
-	tail *Node[T]
+	head *node[T]
+	tail *node[T]
 	size int
 }
 
@@ -18,7 +18,7 @@ func New[T any]() *LinkedList[T] {
 }
 
 func (ll *LinkedList[T]) Add(value T) {
-	node := &Node[T]{Value: value}
+	node := &node[T]{Value: value}
 
 	if ll.head == nil {
 		ll.head = node
