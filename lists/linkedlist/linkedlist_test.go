@@ -240,3 +240,26 @@ func TestSize(t *testing.T) {
 		t.Errorf("Expected size 2 after removing one value, but got %d", ll.Size())
 	}
 }
+
+func TestToSlice(t *testing.T) {
+	ll := linkedlist.New[string]()
+
+	// 1. Empty list
+	slice := ll.ToSlice()
+	if len(slice) != 0 {
+		t.Errorf("Expected an empty slice from an empty list, but got %v", slice)
+	}
+
+	ll.Add("A")
+	ll.Add("B")
+	ll.Add("C")
+
+	// 2. [A, B, C]
+	slice = ll.ToSlice()
+	expected := []string{"A", "B", "C"}
+	for i, v := range expected {
+		if slice[i] != v {
+			t.Errorf("Expected %s at index %d, but got %s", v, i, slice[i])
+		}
+	}
+}
