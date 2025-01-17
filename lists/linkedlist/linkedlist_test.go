@@ -59,7 +59,7 @@ func TestSet(t *testing.T) {
 		t.Errorf("Expected true when setting a value on tail, but got false")
 	}
 	tail, _ := ll.Get(2)
-	if tail != "X" {
+	if tail != "Z" {
 		t.Errorf("Expected tail to be Z, but got %s", tail)
 	}
 
