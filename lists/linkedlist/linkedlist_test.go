@@ -23,6 +23,52 @@ func TestAdd(t *testing.T) {
 	}
 }
 
+func TestSet(t *testing.T) {
+	ll := linkedlist.New[string]()
+
+	// 1. Set on an empty list
+	ok := ll.Set(0, "A")
+	if ok {
+		t.Errorf("Expected false when setting a value on an empty list, but go true")
+	}
+
+	ll.Add("A")
+	ll.Add("B")
+	ll.Add("C") // -> [A, B, C]
+
+	// 2. Set on head
+	if !ll.Set(0, "X") {
+		t.Errorf("Expected true when setting a value on head, but got false")
+	}
+	head, _ := ll.Get(0)
+	if head != "X" {
+		t.Errorf("Expected head to be X, but got %s", head)
+	}
+
+	// 3. Set at index 1
+	if !ll.Set(1, "Y") {
+		t.Errorf("Expected true when setting a value at index 1, but got false")
+	}
+	val, _ := ll.Get(1)
+	if val != "Y" {
+		t.Errorf("Expected Y at index 1, but got %s", val)
+	}
+
+	// 4. Set on tail
+	if !ll.Set(2, "Z") {
+		t.Errorf("Expected true when setting a value on tail, but got false")
+	}
+	tail, _ := ll.Get(2)
+	if tail != "Z" {
+		t.Errorf("Expected tail to be Z, but got %s", tail)
+	}
+
+	// 5. Set at index out of bound
+	if ll.Set(9999, "Z") {
+		t.Errorf("Expected false when setting at index out of bound, but got true")
+	}
+}
+
 func TestRemove(t *testing.T) {
 	ll := linkedlist.New[string]()
 

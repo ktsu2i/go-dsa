@@ -31,6 +31,20 @@ func (ll *LinkedList[T]) Add(value T) {
 	ll.size++
 }
 
+func (ll *LinkedList[T]) Set(index int, value T) bool {
+	if index < 0 || index >= ll.size {
+		return false
+	}
+
+	current := ll.head
+	for i := 0; i < index; i++ {
+		current = current.Next
+	}
+
+	current.Value = value
+	return true
+}
+
 func (ll *LinkedList[T]) Remove(index int) bool {
 	if index < 0 || index >= ll.size {
 		return false
