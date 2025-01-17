@@ -143,6 +143,26 @@ func TestRemove(t *testing.T) {
 	}
 }
 
+func TestClear(t *testing.T) {
+	ll := linkedlist.New[string]()
+
+	// 1. Clear an empty list
+	ll.Clear()
+	if ll.Size() != 0 {
+		t.Errorf("Expected size 0 after clearing an empty list, but got %d", ll.Size())
+	}
+
+	ll.Add("A")
+	ll.Add("B")
+	ll.Add("C")
+
+	// 2. Clear a list with size 3
+	ll.Clear()
+	if ll.Size() != 0 {
+		t.Errorf("Expected size 0 after clearing a list, but got %d", ll.Size())
+	}
+}
+
 func TestGet(t *testing.T) {
 	ll := linkedlist.New[string]()
 
