@@ -95,3 +95,13 @@ func (ll *LinkedList[T]) Get(index int) (T, error) {
 func (ll *LinkedList[T]) Size() int {
 	return ll.size
 }
+
+func (ll *LinkedList[T]) ToSlice() []T {
+	slice := make([]T, 0, ll.size)
+	current := ll.head
+	for current != nil {
+		slice = append(slice, current.Value)
+		current = current.Next
+	}
+	return slice
+}
