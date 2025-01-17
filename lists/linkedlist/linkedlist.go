@@ -73,6 +73,12 @@ func (ll *LinkedList[T]) Remove(index int) bool {
 	return true
 }
 
+func (ll *LinkedList[T]) Clear() {
+	ll.head = nil
+	ll.tail = nil
+	ll.size = 0
+}
+
 func (ll *LinkedList[T]) Get(index int) (T, error) {
 	var value T
 	if index < 0 || index >= ll.size {
