@@ -35,6 +35,47 @@ func TestPush(t *testing.T) {
 	}
 }
 
+func TestPop(t *testing.T) {
+	s := stack.New[string]()
+
+	// 1. Pop from an empty stack
+	_, ok := s.Pop()
+	if ok {
+		t.Errorf("Expected false when popping from an empty stack, but got true")
+	}
+	if s.Size() != 0 {
+		t.Errorf("Expected size 0, but got %d", s.Size())
+	}
+
+	s.Push("A")
+	s.Push("B")
+	s.Push("C")
+
+	// 2. Pop from stack with size 3
+	val, ok := s.Pop()
+	if !ok {
+		t.Errorf("Expected true when popping, but got false")
+	}
+	if val != "C" {
+		t.Errorf("Expected C, but got %s", val)
+	}
+	if s.Size() != 2 {
+		t.Errorf("Expected size 2, but got %d", s.Size())
+	}
+
+	// 3. Pop from stack with size 2
+	val, ok = s.Pop()
+	if !ok {
+		t.Errorf("Expected true when popping, but got false")
+	}
+	if val != "B" {
+		t.Errorf("Expected B, but got %s", val)
+	}
+	if s.Size() != 1 {
+		t.Errorf("Expected size 1, but got %d", s.Size())
+	}
+}
+
 func TestPeek(t *testing.T) {
 	s := stack.New[string]()
 
