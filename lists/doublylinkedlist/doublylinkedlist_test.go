@@ -17,6 +17,8 @@ func TestAdd(t *testing.T) {
 
 	expected := []string{"A", "B", "C"}
 	for i := 0; i < dll.Size(); i++ {
-		// todo
+		if val, _ := dll.Get(i); val != expected[i] {
+			t.Errorf("Expected %s at index %d,  but got %s", expected[i], i, val)
+		}
 	}
 }
