@@ -12,13 +12,13 @@ func TestAdd(t *testing.T) {
 	ll.Add("C") // index: 2
 
 	if ll.Size() != 3 {
-		t.Errorf("Expected size 3, got %d", ll.Size())
+		t.Errorf("Expected size 3, but got %d", ll.Size())
 	}
 
 	expected := []string{"A", "B", "C"}
 	for i := 0; i < ll.Size(); i++ {
 		if val, _ := ll.Get(i); val != expected[i] {
-			t.Errorf("At index %d, expected %s, got %s", i, expected[i], val)
+			t.Errorf("Expected %s at index %d, but got %s", expected[i], i, val)
 		}
 	}
 }
@@ -29,7 +29,7 @@ func TestSet(t *testing.T) {
 	// 1. Set on an empty list
 	ok := ll.Set(0, "A")
 	if ok {
-		t.Errorf("Expected false when setting a value on an empty list, but go true")
+		t.Errorf("Expected false when setting a value on an empty list, but got true")
 	}
 
 	ll.Add("A")
