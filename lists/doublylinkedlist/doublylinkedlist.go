@@ -15,3 +15,18 @@ type DoublyLinkedList[T any] struct {
 func New[T any]() *DoublyLinkedList[T] {
 	return &DoublyLinkedList[T]{}
 }
+
+func (dll *DoublyLinkedList[T]) Add(value T) {
+	node := &node[T]{value: value}
+
+	if dll.head == nil {
+		dll.head = node
+		dll.tail = node
+	} else {
+		node.prev = dll.tail
+		dll.tail.next = node
+		dll.tail = node
+	}
+
+	dll.size++
+}
