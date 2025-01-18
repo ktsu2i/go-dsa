@@ -24,7 +24,7 @@ func (bst *BinarySearchTree[T]) Insert(v T) {
 	}
 }
 
-func (bst *BinarySearchTree[T]) Contains(v T) {
+func (bst *BinarySearchTree[T]) Contains(v T) bool {
 	return containsNode(bst.root, v)
 }
 
