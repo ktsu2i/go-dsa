@@ -23,6 +23,52 @@ func TestAdd(t *testing.T) {
 	}
 }
 
+func TestSet(t *testing.T) {
+	dll := doublylinkedlist.New[string]()
+
+	// 1. Set on an empty list
+	ok := dll.Set(0, "A")
+	if ok {
+		t.Errorf("Expected false when setting a value on an empty list, but go true")
+	}
+
+	dll.Add("A")
+	dll.Add("B")
+	dll.Add("C") // -> [A, B, C]
+
+	// 2. Set on head
+	if !dll.Set(0, "X") {
+		t.Errorf("Expected true when setting a value on head, but got false")
+	}
+	head, _ := dll.Get(0)
+	if head != "X" {
+		t.Errorf("Expected head to be X, but got %s", head)
+	}
+
+	// 3. Set at index 1
+	if !dll.Set(1, "Y") {
+		t.Errorf("Expected true when setting a value at index 1, but got false")
+	}
+	val, _ := dll.Get(1)
+	if val != "Y" {
+		t.Errorf("Expected Y at index 1, but got %s", val)
+	}
+
+	// 4. Set on tail
+	if !dll.Set(2, "Z") {
+		t.Errorf("Expected true when setting a value on tail, but got false")
+	}
+	tail, _ := dll.Get(2)
+	if tail != "Z" {
+		t.Errorf("Expected tail to be Z, but got %s", tail)
+	}
+
+	// 5. Set at index out of bound
+	if dll.Set(9999, "Z") {
+		t.Errorf("Expected false when setting at index out of bound, but got true")
+	}
+}
+
 func TestGet(t *testing.T) {
 	dll := doublylinkedlist.New[string]()
 
