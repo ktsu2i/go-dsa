@@ -24,6 +24,10 @@ func (bst *BinarySearchTree[T]) Insert(v T) {
 	}
 }
 
+func (bst *BinarySearchTree[T]) Contains(v T) {
+	return containsNode(bst.root, v)
+}
+
 // Helper functions
 
 func insertNode[T constraints.Ordered](n *node[T], v T) {
@@ -41,5 +45,19 @@ func insertNode[T constraints.Ordered](n *node[T], v T) {
 		} else {
 			insertNode(n.right, v)
 		}
+	}
+}
+
+func containsNode[T constraints.Ordered](n *node[T], v T) bool {
+	if n == nil {
+		return false
+	}
+
+	if v < n.value {
+		return containsNode(n.left, v)
+	} else if v > n.value {
+		return containsNode(n.right, v)
+	} else {
+		return true
 	}
 }
