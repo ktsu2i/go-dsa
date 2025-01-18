@@ -24,3 +24,12 @@ func (s *Stack[T]) Pop() (T, bool) {
 	s.data = s.data[:index]
 	return value, true
 }
+
+func (s *Stack[T]) Peek() (T, bool) {
+	if len(s.data) == 0 {
+		var value T
+		return value, false
+	}
+	index := len(s.data) - 1
+	return s.data[index], true
+}
