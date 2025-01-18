@@ -3,8 +3,8 @@ package linkedlist
 import "errors"
 
 type node[T any] struct {
-	Value T
-	Next  *node[T]
+	value T
+	next  *node[T]
 }
 
 type LinkedList[T any] struct {
@@ -18,13 +18,13 @@ func New[T any]() *LinkedList[T] {
 }
 
 func (ll *LinkedList[T]) Add(value T) {
-	node := &node[T]{Value: value}
+	node := &node[T]{value: value}
 
 	if ll.head == nil {
 		ll.head = node
 		ll.tail = node
 	} else {
-		ll.tail.Next = node
+		ll.tail.next = node
 		ll.tail = node
 	}
 
@@ -38,10 +38,10 @@ func (ll *LinkedList[T]) Set(index int, value T) bool {
 
 	current := ll.head
 	for i := 0; i < index; i++ {
-		current = current.Next
+		current = current.next
 	}
 
-	current.Value = value
+	current.value = value
 	return true
 }
 
@@ -52,7 +52,7 @@ func (ll *LinkedList[T]) Remove(index int) bool {
 
 	// Remove head
 	if index == 0 {
-		ll.head = ll.head.Next
+		ll.head = ll.head.next
 		if ll.head == nil {
 			ll.tail = nil
 		}
@@ -62,11 +62,11 @@ func (ll *LinkedList[T]) Remove(index int) bool {
 
 	current := ll.head
 	for i := 0; i < index-1; i++ {
-		current = current.Next
+		current = current.next
 	}
 
-	current.Next = current.Next.Next
-	if current.Next == nil {
+	current.next = current.next.next
+	if current.next == nil {
 		ll.tail = current
 	}
 	ll.size--
@@ -87,9 +87,9 @@ func (ll *LinkedList[T]) Get(index int) (T, error) {
 
 	current := ll.head
 	for i := 0; i < index; i++ {
-		current = current.Next
+		current = current.next
 	}
-	return current.Value, nil
+	return current.value, nil
 }
 
 func (ll *LinkedList[T]) Size() int {
@@ -100,8 +100,8 @@ func (ll *LinkedList[T]) ToSlice() []T {
 	slice := make([]T, 0, ll.size)
 	current := ll.head
 	for current != nil {
-		slice = append(slice, current.Value)
-		current = current.Next
+		slice = append(slice, current.value)
+		current = current.next
 	}
 	return slice
 }
