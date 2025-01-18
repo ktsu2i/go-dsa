@@ -30,8 +30,7 @@ func (s *Stack[T]) Peek() (T, bool) {
 		var value T
 		return value, false
 	}
-	index := len(s.data) - 1
-	return s.data[index], true
+	return s.data[len(s.data)-1], true
 }
 
 func (s *Stack[T]) Size() int {
