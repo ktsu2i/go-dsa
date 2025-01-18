@@ -69,7 +69,7 @@ func TestPeek(t *testing.T) {
 		t.Errorf("Expected false when peeking, but got true")
 	}
 
-	// 2. Queue with size 1
+	// 2. Size 1
 	q.Enqueue("A")
 	front, ok := q.Peek()
 	if !ok {
@@ -82,7 +82,7 @@ func TestPeek(t *testing.T) {
 		t.Errorf("Expected size 1, but got %d", q.Size())
 	}
 
-	// 3. Queue with size 2
+	// 3. Size 2
 	q.Enqueue("B")
 	front, ok = q.Peek()
 	if !ok {
