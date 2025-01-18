@@ -33,3 +33,7 @@ func (s *Stack[T]) Peek() (T, bool) {
 	index := len(s.data) - 1
 	return s.data[index], true
 }
+
+func (s *Stack[T]) Size() int {
+	return len(s.data)
+}
