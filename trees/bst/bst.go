@@ -28,6 +28,12 @@ func (bst *BinarySearchTree[T]) Contains(v T) bool {
 	return containsNode(bst.root, v)
 }
 
+func (bst *BinarySearchTree[T]) InOrder() []T {
+	var result []T
+	inOrderTraversal(bst.root, &result)
+	return result
+}
+
 // Helper functions
 
 func insertNode[T constraints.Ordered](n *node[T], v T) {
@@ -60,4 +66,13 @@ func containsNode[T constraints.Ordered](n *node[T], v T) bool {
 	} else {
 		return true
 	}
+}
+
+func inOrderTraversal[T constraints.Ordered](n *node[T], result *[]T) {
+	if n == nil {
+		return
+	}
+	inOrderTraversal(n.left, result)
+	*result = append(*result, n.value)
+	inOrderTraversal(n.right, result)
 }
