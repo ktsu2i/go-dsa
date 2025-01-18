@@ -33,6 +33,20 @@ func (dll *DoublyLinkedList[T]) Add(value T) {
 	dll.size++
 }
 
+func (dll *DoublyLinkedList[T]) Set(index int, value T) bool {
+	if index < 0 || index >= dll.size {
+		return false
+	}
+
+	current := dll.head
+	for i := 0; i < index; i++ {
+		current = current.next
+	}
+	current.value = value
+
+	return true
+}
+
 func (dll *DoublyLinkedList[T]) Get(index int) (T, error) {
 	var value T
 	if index < 0 || index >= dll.size {
