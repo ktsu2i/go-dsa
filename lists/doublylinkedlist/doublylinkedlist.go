@@ -1,5 +1,7 @@
 package doublylinkedlist
 
+import "errors"
+
 type node[T any] struct {
 	value T
 	prev  *node[T]
@@ -29,6 +31,19 @@ func (dll *DoublyLinkedList[T]) Add(value T) {
 	}
 
 	dll.size++
+}
+
+func (dll *DoublyLinkedList[T]) Get(index int) (T, error) {
+	var value T
+	if index < 0 || index >= dll.size {
+		return value, errors.New("index out of bound")
+	}
+
+	current := dll.head
+	for i := 0; i < index; i++ {
+		current = current.next
+	}
+	return current.value, nil
 }
 
 func (dll *DoublyLinkedList[T]) Size() int {
