@@ -95,3 +95,24 @@ func TestPeek(t *testing.T) {
 		t.Errorf("Expected size 2, but got %d", q.Size())
 	}
 }
+
+func TestSize(t *testing.T) {
+	q := queue.New[string]()
+
+	// 1. Empty queue
+	if q.Size() != 0 {
+		t.Errorf("Expected size 0 for an empty queue, but got %d", q.Size())
+	}
+
+	// 2. Size 1
+	q.Enqueue("A")
+	if q.Size() != 1 {
+		t.Errorf("Expected size 1 after enqueueing one value, but got %d", q.Size())
+	}
+
+	// 3. Reduce size -> Size 0
+	q.Dequeue()
+	if q.Size() != 0 {
+		t.Errorf("Expected size 0, but got %d", q.Size())
+	}
+}
