@@ -34,3 +34,28 @@ func TestEnqueue(t *testing.T) {
 		t.Errorf("Expected front to be A, but got %s", front)
 	}
 }
+
+func TestDequeue(t *testing.T) {
+	q := queue.New[string]()
+
+	// 1. Dequeue from an empty queue
+	_, ok := q.Dequeue()
+	if ok {
+		t.Errorf("Expected false after dequeueing from an empty queue, but got true")
+	}
+	if q.Size() != 0 {
+		t.Errorf("Expected size 0, but got %d", q.Size())
+	}
+
+	q.Enqueue("A")
+	q.Enqueue("B")
+
+	// 2. Dequeue from queue with size 2
+	val, ok := q.Dequeue()
+	if !ok {
+		t.Errorf("Expected true when dequeueing, but got false")
+	}
+	if val != "A" {
+		t.Errorf("Expected A when dequeueing, but got %s", val)
+	}
+}
