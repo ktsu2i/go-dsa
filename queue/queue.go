@@ -33,3 +33,7 @@ func (q *Queue[T]) Peek() (T, bool) {
 func (q *Queue[T]) Size() int {
 	return len(q.data)
 }
+
+func (q *Queue[T]) IsEmpty() bool {
+	return len(q.data) == 0
+}
