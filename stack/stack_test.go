@@ -98,3 +98,24 @@ func TestPeek(t *testing.T) {
 		t.Errorf("Expected size 1, but got %d", s.Size())
 	}
 }
+
+func TestSize(t *testing.T) {
+	s := stack.New[string]()
+
+	// 1. Empty stack
+	if s.Size() != 0 {
+		t.Errorf("Expected size 0 for an empty stack, but got %d", s.Size())
+	}
+
+	// 2. Size 1
+	s.Push("A")
+	if s.Size() != 1 {
+		t.Errorf("Expected size 1 after pushing one value, but got %d", s.Size())
+	}
+
+	// 3. Reduce size -> Size 0
+	s.Pop()
+	if s.Size() != 0 {
+		t.Errorf("Expected size 0, but got %d", s.Size())
+	}
+}
