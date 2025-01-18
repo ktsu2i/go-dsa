@@ -109,3 +109,13 @@ func (dll *DoublyLinkedList[T]) Get(index int) (T, error) {
 func (dll *DoublyLinkedList[T]) Size() int {
 	return dll.size
 }
+
+func (dll *DoublyLinkedList[T]) ToSlice() []T {
+	slice := make([]T, 0, dll.size)
+	current := dll.head
+	for current != nil {
+		slice = append(slice, current.value)
+		current = current.next
+	}
+	return slice
+}
