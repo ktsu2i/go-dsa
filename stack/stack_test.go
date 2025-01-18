@@ -34,3 +34,26 @@ func TestPush(t *testing.T) {
 		t.Errorf("Expected B on top, but got %s", top)
 	}
 }
+
+func TestPeek(t *testing.T) {
+	s := stack.New[string]()
+
+	// 1. Empty stack
+	_, ok := s.Peek()
+	if ok {
+		t.Errorf("Expected false when peeking, but got true")
+	}
+
+	// 2. Stack with size 1
+	s.Push("A")
+	top, ok := s.Peek()
+	if !ok {
+		t.Errorf("Expected false when peeking, but got true")
+	}
+	if top != "A" {
+		t.Errorf("Expected A on top, but got %s", top)
+	}
+	if s.Size() != 1 {
+		t.Errorf("Expected size 1, but got %d", s.Size())
+	}
+}
