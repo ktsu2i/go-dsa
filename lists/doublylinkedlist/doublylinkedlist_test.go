@@ -209,3 +209,26 @@ func TestGet(t *testing.T) {
 		t.Errorf("Expected error for index out of bound, but got nil")
 	}
 }
+
+func TestToSlice(t *testing.T) {
+	dll := doublylinkedlist.New[string]()
+
+	// 1. Empty list
+	slice := dll.ToSlice()
+	if len(slice) != 0 {
+		t.Errorf("Expected an empty slice from an empty list, but got %v", slice)
+	}
+
+	dll.Add("A")
+	dll.Add("B")
+	dll.Add("C")
+
+	// 2. [A, B, C]
+	slice = dll.ToSlice()
+	expected := []string{"A", "B", "C"}
+	for i, v := range expected {
+		if slice[i] != v {
+			t.Errorf("Expected %s at index %d, but got %s", v, i, slice[i])
+		}
+	}
+}
