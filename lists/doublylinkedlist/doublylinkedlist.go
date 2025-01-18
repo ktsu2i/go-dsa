@@ -30,3 +30,7 @@ func (dll *DoublyLinkedList[T]) Add(value T) {
 
 	dll.size++
 }
+
+func (dll *DoublyLinkedList[T]) Size() int {
+	return dll.size
+}
