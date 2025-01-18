@@ -59,3 +59,26 @@ func TestDequeue(t *testing.T) {
 		t.Errorf("Expected A when dequeueing, but got %s", val)
 	}
 }
+
+func TestPeek(t *testing.T) {
+	q := queue.New[string]()
+
+	// 1. Empty queue
+	_, ok := q.Peek()
+	if ok {
+		t.Errorf("Expected false when peeking, but got true")
+	}
+
+	// 2. Queue with size 1
+	q.Enqueue("A")
+	front, ok := q.Peek()
+	if !ok {
+		t.Errorf("Expected false when peeking, but got true")
+	}
+	if front != "A" {
+		t.Errorf("Expected A on front, but got %s", front)
+	}
+	if q.Size() != 1 {
+		t.Errorf("Expected size 1, but got %d", q.Size())
+	}
+}
