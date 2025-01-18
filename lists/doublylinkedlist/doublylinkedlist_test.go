@@ -69,6 +69,80 @@ func TestSet(t *testing.T) {
 	}
 }
 
+func TestRemove(t *testing.T) {
+	dll := doublylinkedlist.New[string]()
+
+	// 1. Remove from an empty list
+	if dll.Remove(0) {
+		t.Errorf("Expected false when removing from an empty list, but got true")
+	}
+	if dll.Size() != 0 {
+		t.Errorf("Expected size 0, but got %d", dll.Size())
+	}
+
+	dll.Add("A") // index: 0
+	dll.Add("B") // index: 1
+	dll.Add("C") // index: 2
+	dll.Add("D") // index: 3
+	dll.Add("E") // index: 4
+
+	// 2. Remove head
+	ok := dll.Remove(0)
+	if !ok {
+		t.Errorf("Expected true when removing head, but got false")
+	}
+	// -> [B, C, D, E]
+	if dll.Size() != 4 {
+		t.Errorf("Expected size 4 after removing head, but got %d", dll.Size())
+	}
+	// Check if head is B at this point
+	head, _ := dll.Get(0)
+	if head != "B" {
+		t.Errorf("Expected head to be B, but got %s", head)
+	}
+
+	// 3. Remove value at index 1
+	ok = dll.Remove(1)
+	if !ok {
+		t.Errorf("Expected true when removing value at index 1, but got false")
+	}
+	// -> [B, D, E]
+	if dll.Size() != 3 {
+		t.Errorf("Expected size 3 after removing value at index 1, but got %d", dll.Size())
+	}
+	// Check if there are B at index 0, D at index 1, and E at index 2
+	val1, _ := dll.Get(0)
+	val2, _ := dll.Get(1)
+	val3, _ := dll.Get(2)
+	if val1 != "B" || val2 != "D" || val3 != "E" {
+		t.Errorf("Expected [B, D, E], but got [%s, %s, %s]", val1, val2, val3)
+	}
+
+	// 4. Remove tail
+	ok = dll.Remove(2)
+	if !ok {
+		t.Errorf("Expected true when removing head, but got false")
+	}
+	// -> [B, D]
+	if dll.Size() != 2 {
+		t.Errorf("Expected size 2 after removing tail, but got %d", dll.Size())
+	}
+	tail, _ := dll.Get(1)
+	if tail != "D" {
+		t.Errorf("Expected tail to be D, but got %s", tail)
+	}
+
+	// 5. Remove value at index out of bound
+	ok = dll.Remove(9999)
+	if ok {
+		t.Errorf("Expected false for index out of bound, but got true")
+	}
+	// -> [B, D]
+	if dll.Size() != 2 {
+		t.Errorf("Expected size 2 after index out of bound error, but got %d", dll.Size())
+	}
+}
+
 func TestGet(t *testing.T) {
 	dll := doublylinkedlist.New[string]()
 
