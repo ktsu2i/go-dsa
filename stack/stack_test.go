@@ -97,6 +97,19 @@ func TestPeek(t *testing.T) {
 	if s.Size() != 1 {
 		t.Errorf("Expected size 1, but got %d", s.Size())
 	}
+
+	// 3. Stack with size 2
+	s.Push("B")
+	top, ok = s.Peek()
+	if !ok {
+		t.Errorf("Expected false when peeking, but got true")
+	}
+	if top != "B" {
+		t.Errorf("Expected B on top, but got %s", top)
+	}
+	if s.Size() != 2 {
+		t.Errorf("Expected size 2, but got %d", s.Size())
+	}
 }
 
 func TestSize(t *testing.T) {
