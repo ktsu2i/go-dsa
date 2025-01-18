@@ -87,6 +87,12 @@ func (dll *DoublyLinkedList[T]) Remove(index int) bool {
 	return true
 }
 
+func (dll *DoublyLinkedList[T]) Clear() {
+	dll.head = nil
+	dll.tail = nil
+	dll.size = 0
+}
+
 func (dll *DoublyLinkedList[T]) Get(index int) (T, error) {
 	var value T
 	if index < 0 || index >= dll.size {
