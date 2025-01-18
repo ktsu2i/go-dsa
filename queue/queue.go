@@ -29,3 +29,7 @@ func (q *Queue[T]) Peek() (T, bool) {
 	}
 	return q.data[0], true
 }
+
+func (q *Queue[T]) Size() int {
+	return len(q.data)
+}
