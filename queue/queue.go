@@ -21,3 +21,11 @@ func (q *Queue[T]) Dequeue() (T, bool) {
 	q.data = q.data[1:]
 	return front, true
 }
+
+func (q *Queue[T]) Peek() (T, bool) {
+	var value T
+	if len(q.data) == 0 {
+		return value, false
+	}
+	return q.data[0], true
+}
