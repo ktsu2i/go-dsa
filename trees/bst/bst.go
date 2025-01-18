@@ -24,6 +24,8 @@ func (bst *BinarySearchTree[T]) Insert(v T) {
 	}
 }
 
+// Helper functions
+
 func insertNode[T constraints.Ordered](n *node[T], v T) {
 	if v < n.value {
 		// left
