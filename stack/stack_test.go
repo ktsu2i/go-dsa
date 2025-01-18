@@ -119,3 +119,19 @@ func TestSize(t *testing.T) {
 		t.Errorf("Expected size 0, but got %d", s.Size())
 	}
 }
+
+func TestIsEmpty(t *testing.T) {
+	s := stack.New[string]()
+
+	// 1. Initial empty stack
+	if !s.IsEmpty() {
+		t.Errorf("Expected size 0 for an empty stack, but got %d", s.Size())
+	}
+
+	// 2. Empty stack
+	s.Push("A")
+	s.Pop()
+	if !s.IsEmpty() {
+		t.Errorf("Expected size 0 for an empty stack, but got %d", s.Size())
+	}
+}
