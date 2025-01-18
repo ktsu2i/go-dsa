@@ -47,46 +47,6 @@ func (dll *DoublyLinkedList[T]) Set(index int, value T) bool {
 	return true
 }
 
-func (dll *DoublyLinkedList[T]) Remove(index int) bool {
-	if index < 0 || index >= dll.size {
-		return false
-	}
-
-	// Remove head
-	if index == 0 {
-		dll.head = dll.head.next
-		if dll.head == nil {
-			dll.tail = nil
-		} else {
-			dll.head.prev = nil
-		}
-		dll.size--
-		return true
-	}
-
-	// Remove tail
-	if index == dll.size-1 {
-		dll.tail = dll.tail.prev
-		if dll.tail == nil {
-			dll.head = nil
-		} else {
-			dll.tail.next = nil
-		}
-		dll.size--
-		return true
-	}
-
-	// Remove value in the middle
-	current := dll.head
-	for i := 0; i < index; i++ {
-		current = current.next
-	}
-	current.prev.next = current.next
-	current.next.prev = current.prev
-	dll.size--
-	return true
-}
-
 func (dll *DoublyLinkedList[T]) Get(index int) (T, error) {
 	var value T
 	if index < 0 || index >= dll.size {
