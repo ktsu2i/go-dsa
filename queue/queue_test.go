@@ -116,3 +116,19 @@ func TestSize(t *testing.T) {
 		t.Errorf("Expected size 0, but got %d", q.Size())
 	}
 }
+
+func TestIsEmpty(t *testing.T) {
+	q := queue.New[string]()
+
+	// 1. Initial empty queue
+	if !q.IsEmpty() {
+		t.Errorf("Expected size 0 for an empty queue, but got %d", q.Size())
+	}
+
+	// 2. Empty stack
+	q.Enqueue("A")
+	q.Dequeue()
+	if !q.IsEmpty() {
+		t.Errorf("Expected size 0 for an empty queue, but got %d", q.Size())
+	}
+}
