@@ -143,6 +143,26 @@ func TestRemove(t *testing.T) {
 	}
 }
 
+func TestClear(t *testing.T) {
+	dll := doublylinkedlist.New[string]()
+
+	// 1. Clear an empty list
+	dll.Clear()
+	if dll.Size() != 0 {
+		t.Errorf("Expected size 0 after clearing an empty list, but got %d", dll.Size())
+	}
+
+	dll.Add("A")
+	dll.Add("B")
+	dll.Add("C")
+
+	// 2. Clear a list with size 3
+	dll.Clear()
+	if dll.Size() != 0 {
+		t.Errorf("Expected size 0 after clearing a list, but got %d", dll.Size())
+	}
+}
+
 func TestGet(t *testing.T) {
 	dll := doublylinkedlist.New[string]()
 
