@@ -115,7 +115,7 @@ func TestPreOrder(t *testing.T) {
 
 	// 3. Duplicated value
 	bst.Insert(10)
-	result = bst.InOrder()
+	result = bst.PreOrder()
 	expected = []int{10, 5, 2, 8, 15, 12, 10, 20}
 	if len(result) != len(expected) {
 		t.Errorf("Length mismatch, expected %v, but got %v", expected, result)
@@ -160,6 +160,49 @@ func TestInOrder(t *testing.T) {
 	bst.Insert(10)
 	result = bst.InOrder()
 	expected = []int{2, 5, 8, 10, 10, 12, 15, 20}
+	if len(result) != len(expected) {
+		t.Errorf("Length mismatch, expected %v, but got %v", expected, result)
+	}
+	for i, v := range expected {
+		if result[i] != v {
+			t.Errorf("Expected %d at index %d, but got %d", v, i, result[i])
+		}
+	}
+}
+
+func TestPostOrder(t *testing.T) {
+	bst := bst.New[int]()
+
+	// 1. Empty BST
+	result := bst.PostOrder()
+	if len(result) != 0 {
+		t.Errorf("Expected empty InOrder for an empty tree, but got %v", result)
+	}
+
+	bst.Insert(10)
+	bst.Insert(5)
+	bst.Insert(15)
+	bst.Insert(2)
+	bst.Insert(8)
+	bst.Insert(12)
+	bst.Insert(20)
+
+	// 2. BST with 7 values
+	result = bst.PostOrder()
+	expected := []int{2, 8, 5, 12, 20, 15, 10}
+	if len(result) != len(expected) {
+		t.Errorf("Length mismatch, expected %v, but got %v", expected, result)
+	}
+	for i, v := range expected {
+		if result[i] != v {
+			t.Errorf("Expected %d at index %d, but got %d", v, i, result[i])
+		}
+	}
+
+	// 3. Duplicated value
+	bst.Insert(10)
+	result = bst.PostOrder()
+	expected = []int{2, 8, 5, 10, 12, 20, 15, 10}
 	if len(result) != len(expected) {
 		t.Errorf("Length mismatch, expected %v, but got %v", expected, result)
 	}
