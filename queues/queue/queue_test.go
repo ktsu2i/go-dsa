@@ -1,7 +1,7 @@
 package queue_test
 
 import (
-	"go-dsa/queue"
+	"go-dsa/queues/queue"
 	"testing"
 )
 
