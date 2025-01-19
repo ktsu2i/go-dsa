@@ -67,3 +67,18 @@ func TestRemove(t *testing.T) {
 		t.Errorf("Expected not to have 9999")
 	}
 }
+
+func TestContains(t *testing.T) {
+	s := set.New[int]()
+
+	// 1. Empty
+	if s.Contains(1) {
+		t.Errorf("Expected to not contain 1 on an empty set")
+	}
+
+	// 2. Set with size 1
+	s.Add(10)
+	if !s.Contains(10) {
+		t.Errorf("Expected to have 10")
+	}
+}
