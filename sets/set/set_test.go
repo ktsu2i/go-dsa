@@ -106,3 +106,28 @@ func TestUnion(t *testing.T) {
 		}
 	}
 }
+
+func TestDifference(t *testing.T) {
+	s1 := set.New[int]()
+	s1.Add(1)
+	s1.Add(2)
+	s1.Add(3)
+	s1.Add(4)
+
+	s2 := set.New[int]()
+	s2.Add(3)
+	s2.Add(4)
+	s2.Add(5)
+
+	difference := s1.Difference(s2)
+	expected := []int{1, 2}
+
+	if difference.Size() != len(expected) {
+		t.Errorf("Expected difference size=2, but got %d", difference.Size())
+	}
+	for _, v := range expected {
+		if !difference.Contains(v) {
+			t.Errorf("Expected difference to contain %d, but it does not", v)
+		}
+	}
+}
