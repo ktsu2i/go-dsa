@@ -132,3 +132,19 @@ func TestSize(t *testing.T) {
 		t.Errorf("Expected size 3, but got %d", h.Size())
 	}
 }
+
+func TestIsEmpty(t *testing.T) {
+	h := minheap.New[int]()
+
+	// 1. Initial empty heap
+	if !h.IsEmpty() {
+		t.Errorf("Expected size 0 for an empty heap, but got %d", h.Size())
+	}
+
+	// 2.Empty heap
+	h.Push(5)
+	h.Pop()
+	if !h.IsEmpty() {
+		t.Errorf("Expected size 0 for an empty heap, but got %d", h.Size())
+	}
+}
