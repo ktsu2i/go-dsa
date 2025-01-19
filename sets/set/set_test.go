@@ -82,3 +82,27 @@ func TestContains(t *testing.T) {
 		t.Errorf("Expected to have 10")
 	}
 }
+
+func TestUnion(t *testing.T) {
+	s1 := set.New[int]()
+	s1.Add(1)
+	s1.Add(2)
+	s1.Add(3)
+
+	s2 := set.New[int]()
+	s2.Add(4)
+	s2.Add(5)
+	s2.Add(6)
+
+	union := s1.Union(s2)
+	expected := []int{1, 2, 3, 4, 5, 6}
+
+	if union.Size() != len(expected) {
+		t.Errorf("Mismatch size, union size=%d and expected size=%d", union.Size(), len(expected))
+	}
+	for _, v := range expected {
+		if !union.Contains(v) {
+			t.Errorf("Expected union to contain %d, but it does not", v)
+		}
+	}
+}
