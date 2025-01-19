@@ -115,3 +115,20 @@ func TestPeek(t *testing.T) {
 		t.Errorf("Expected size 3, but got %d", h.Size())
 	}
 }
+
+func TestSize(t *testing.T) {
+	h := minheap.New[int]()
+
+	// 1. Empty heap
+	if h.Size() != 0 {
+		t.Errorf("Expected size 0, but got %d", h.Size())
+	}
+
+	// 2. Heap with size 3
+	h.Push(10)
+	h.Push(5)
+	h.Push(20)
+	if h.Size() != 3 {
+		t.Errorf("Expected size 3, but got %d", h.Size())
+	}
+}
