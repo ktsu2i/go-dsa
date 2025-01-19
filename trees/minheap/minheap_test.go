@@ -78,3 +78,40 @@ func TestPop(t *testing.T) {
 		}
 	}
 }
+
+func TestPeek(t *testing.T) {
+	h := minheap.New[int]()
+
+	// 1. Empty heap
+	_, ok := h.Peek()
+	if ok {
+		t.Errorf("Expected Peek() on empty heap to return ok=false, but got ok=true")
+	}
+
+	// 2. Heap with size 1
+	h.Push(10)
+	val, ok := h.Peek()
+	if !ok {
+		t.Errorf("Expected Peek() to return ok=false, but got ok=true")
+	}
+	if val != 10 {
+		t.Errorf("Expected Peek()=10, but got %d", val)
+	}
+	if h.Size() != 1 {
+		t.Errorf("Expected size 1, but got %d", h.Size())
+	}
+
+	// 3. Heap with size 3
+	h.Push(5)
+	h.Push(15)
+	val, ok = h.Peek()
+	if !ok {
+		t.Errorf("Expected Peek() to return ok=false, but got ok=true")
+	}
+	if val != 5 {
+		t.Errorf("Expected Peek()=5, but got %d", val)
+	}
+	if h.Size() != 3 {
+		t.Errorf("Expected size 3, but got %d", h.Size())
+	}
+}
