@@ -79,6 +79,7 @@ func (h *MinHeap[T]) heapifyDown(index int) {
 		}
 		if min != index {
 			h.data[index], h.data[min] = h.data[min], h.data[index]
+			index = min
 		} else {
 			break
 		}

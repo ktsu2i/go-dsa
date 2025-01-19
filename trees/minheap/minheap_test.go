@@ -44,3 +44,37 @@ func TestPush(t *testing.T) {
 		t.Errorf("Expected 5 after peeking, but got %d", val)
 	}
 }
+
+func TestPop(t *testing.T) {
+	h := minheap.New[int]()
+
+	// 1. Empty heap
+	_, ok := h.Pop()
+	if ok {
+		t.Errorf("Expected Pop() on empty heap to return ok=false, but got ok=true")
+	}
+	if h.Size() != 0 {
+		t.Errorf("Expected size 0 for empty heap, but got %d", h.Size())
+	}
+
+	nums := []int{10, 5, 15, 2, 8, 12, 20}
+	for _, v := range nums {
+		h.Push(v)
+	}
+	if h.Size() != 7 {
+		t.Errorf("Expected size 7, but got %d", h.Size())
+	}
+
+	// 2. Heap with size 7
+	expected := []int{2, 5, 8, 10, 12, 15, 20}
+	for _, exp := range expected {
+		val, ok := h.Pop()
+		if !ok {
+			t.Errorf("Expected Pop() to return ok=true, but got ok=false")
+			continue
+		}
+		if val != exp {
+			t.Errorf("Expected Pop()=%d, but got %d", exp, val)
+		}
+	}
+}
