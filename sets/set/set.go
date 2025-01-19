@@ -70,6 +70,16 @@ func (s *Set[T]) Intersection(other *Set[T]) *Set[T] {
 	return intersection
 }
 
+func (s *Set[T]) Difference(other *Set[T]) *Set[T] {
+	difference := New[T]()
+	for v := range s.values {
+		if !other.Contains(v) {
+			difference.Add(v)
+		}
+	}
+	return difference
+}
+
 func (s *Set[T]) Equals(other *Set[T]) bool {
 	if s.Size() != other.Size() {
 		return false
