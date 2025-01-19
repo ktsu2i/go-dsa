@@ -131,3 +131,40 @@ func TestDifference(t *testing.T) {
 		}
 	}
 }
+
+func TestEquals(t *testing.T) {
+	// 1. Same numbers in the same order
+	s1 := set.New[int]()
+	s1.Add(1)
+	s1.Add(2)
+	s1.Add(3)
+
+	s2 := set.New[int]()
+	s2.Add(1)
+	s2.Add(2)
+	s2.Add(3)
+
+	if !s1.Equals(s2) {
+		t.Errorf("Expected s1 and s2 to be equal, but they are not")
+	}
+
+	// 2. Same numbers in a different order
+	s2 = set.New[int]()
+	s2.Add(3)
+	s2.Add(1)
+	s2.Add(2)
+
+	if !s1.Equals(s2) {
+		t.Errorf("Expected s1 and s2 to be equal, but they are not")
+	}
+
+	// 3. Different numbers
+	s2 = set.New[int]()
+	s2.Add(10)
+	s2.Add(20)
+	s2.Add(30)
+
+	if s1.Equals(s2) {
+		t.Errorf("Expected s1 and s2 to be not equal, but they are")
+	}
+}
