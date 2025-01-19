@@ -34,6 +34,14 @@ func (h *MinHeap[T]) Pop() (T, bool) {
 	return min, true
 }
 
+func (h *MinHeap[T]) Peek() (T, bool) {
+	var value T
+	if h.IsEmpty() {
+		return value, false
+	}
+	return h.data[0], true
+}
+
 func (h *MinHeap[T]) Size() int {
 	return len(h.data)
 }
