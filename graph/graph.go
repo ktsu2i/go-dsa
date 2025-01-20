@@ -2,6 +2,7 @@ package graph
 
 import (
 	"errors"
+	"fmt"
 	"sync"
 )
 
@@ -62,6 +63,30 @@ func (g *Graph[T]) RemoveVertex(id T) error {
 			}
 		}
 		g.edges[from] = newEdges
+	}
+	return nil
+}
+
+func (g *Graph[T]) AddEdge(from, to T, weight float64) error {
+	g.lock.Lock()
+	defer g.lock.Unlock()
+
+	if _, exists := g.vertices[from]; !exists {
+		return fmt.Errorf("vertex %v does not exists", from)
+	}
+	if _, exists := g.vertices[to]; !exists {
+		return fmt.Errorf("vertex %v does not exists", to)
+	}
+
+	if !g.weighted {
+		weight = 1.0
+	}
+
+	e := edge[T]{from: from, to: to, weight: weight}
+	g.edges[from] = append(g.edges[from], e)
+	if !g.directed {
+		reverseEdge := edge[T]{from: to, to: from, weight: weight}
+		g.edges[to] = append(g.edges[to], reverseEdge)
 	}
 	return nil
 }
