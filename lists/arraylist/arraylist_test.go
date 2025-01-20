@@ -47,7 +47,7 @@ func TestRemove(t *testing.T) {
 	// 2. Size 2
 	al.Add(10)
 	al.Add(20)
-	ok = al.Remove(10)
+	ok = al.Remove(0)
 	if !ok {
 		t.Errorf("Expected ok=true, but got false")
 	}
@@ -68,8 +68,8 @@ func TestGet(t *testing.T) {
 
 	// 1. Empty
 	_, ok := al.Get(0)
-	if !ok {
-		t.Errorf("Expected ok=true, but got false")
+	if ok {
+		t.Errorf("Expected ok=false, but got true")
 	}
 
 	// 2. Size 2
