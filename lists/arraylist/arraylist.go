@@ -49,6 +49,10 @@ func (al *ArrayList[T]) MergeSort() {
 	al.mergeSort(al.values)
 }
 
+func (al *ArrayList[T]) QuickSort() {
+	al.quickSort(al.values, 0, len(al.values)-1)
+}
+
 // Helper functions
 
 func (al *ArrayList[T]) mergeSort(arr []T) []T {
@@ -80,4 +84,26 @@ func (al *ArrayList[T]) merge(left, right []T) []T {
 	result = append(result, left[i:]...)
 	result = append(result, right[j:]...)
 	return result
+}
+
+func (al *ArrayList[T]) quickSort(arr []T, low, high int) {
+	if low < high {
+		pi := al.partition(arr, low, high)
+		al.quickSort(arr, low, pi-1)
+		al.quickSort(arr, pi+1, high)
+	}
+}
+
+func (al *ArrayList[T]) partition(arr []T, low, high int) int {
+	pivot := arr[high]
+	i := low - 1
+
+	for j := low; j < high; j++ {
+		if arr[j] < pivot {
+			i++
+			arr[i], arr[j] = arr[j], arr[i]
+		}
+	}
+	arr[i+1], arr[high] = arr[high], arr[i+1]
+	return i + 1
 }
