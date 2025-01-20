@@ -90,3 +90,22 @@ func TestGet(t *testing.T) {
 		t.Errorf("Expected 20, but got %d", val)
 	}
 }
+
+func TestContains(t *testing.T) {
+	al := arraylist.New[int]()
+
+	// 1. Empty
+	if al.Contains(10) {
+		t.Errorf("Expected to not contain 10, but it does")
+	}
+
+	// 2. Size 2
+	al.Add(10)
+	al.Add(20)
+	if !al.Contains(10) {
+		t.Errorf("Expected to contain 10, but it does not")
+	}
+	if !al.Contains(20) {
+		t.Errorf("Expected to contain 20, but it does not")
+	}
+}
