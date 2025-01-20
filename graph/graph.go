@@ -1,6 +1,7 @@
 package graph
 
 import (
+	"errors"
 	"sync"
 )
 
@@ -40,4 +41,27 @@ func (g *Graph[T]) AddVertex(id T, value any) {
 		return
 	}
 	g.vertices[id] = &vertex[T]{id: id, value: value}
+}
+
+func (g *Graph[T]) RemoveVertex(id T) error {
+	g.lock.Lock()
+	defer g.lock.Unlock()
+
+	if _, exists := g.vertices[id]; !exists {
+		return errors.New("vertex does not exists")
+	}
+
+	delete(g.vertices, id)
+	delete(g.edges, id)
+
+	for from, edges := range g.edges {
+		newEdges := []edge[T]{}
+		for _, edge := range edges {
+			if edge.to != id {
+				newEdges = append(newEdges, edge)
+			}
+		}
+		g.edges[from] = newEdges
+	}
+	return nil
 }
