@@ -1,7 +1,7 @@
 package stack_test
 
 import (
-	"go-dsa/stack"
+	"go-dsa/stacks/stack"
 	"testing"
 )
 
