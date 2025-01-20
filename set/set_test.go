@@ -1,7 +1,7 @@
 package set_test
 
 import (
-	"go-dsa/sets/set"
+	"go-dsa/set"
 	"testing"
 )
 
