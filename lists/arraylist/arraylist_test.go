@@ -41,7 +41,7 @@ func TestRemove(t *testing.T) {
 	// 1. Empty
 	ok := al.Remove(100)
 	if ok {
-		t.Errorf("Expected ok=false, but ok=true")
+		t.Errorf("Expected ok=false, but true")
 	}
 
 	// 2. Size 2
@@ -55,6 +55,34 @@ func TestRemove(t *testing.T) {
 		t.Errorf("Expected size 1, but got %d", al.Size())
 	}
 	val, ok := al.Get(0)
+	if !ok {
+		t.Errorf("expected ok=true, but got false")
+	}
+	if val != 20 {
+		t.Errorf("Expected 20, but got %d", val)
+	}
+}
+
+func TestGet(t *testing.T) {
+	al := arraylist.New[int]()
+
+	// 1. Empty
+	_, ok := al.Get(0)
+	if !ok {
+		t.Errorf("Expected ok=true, but got false")
+	}
+
+	// 2. Size 2
+	al.Add(10)
+	al.Add(20)
+	val, ok := al.Get(0)
+	if !ok {
+		t.Errorf("expected ok=true, but got false")
+	}
+	if val != 10 {
+		t.Errorf("Expected 10, but got %d", val)
+	}
+	val, ok = al.Get(1)
 	if !ok {
 		t.Errorf("expected ok=true, but got false")
 	}
