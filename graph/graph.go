@@ -1,6 +1,8 @@
 package graph
 
-import "sync"
+import (
+	"sync"
+)
 
 type vertex[T comparable] struct {
 	id    T
@@ -28,4 +30,14 @@ func New[T comparable](directed bool, weighted bool) *Graph[T] {
 		directed: directed,
 		weighted: weighted,
 	}
+}
+
+func (g *Graph[T]) AddVertex(id T, value any) {
+	g.lock.Lock()
+	defer g.lock.Unlock()
+
+	if _, exists := g.vertices[id]; exists {
+		return
+	}
+	g.vertices[id] = &vertex[T]{id: id, value: value}
 }
