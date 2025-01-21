@@ -88,9 +88,9 @@ func (al *ArrayList[T]) merge(left, right []T) []T {
 
 func (al *ArrayList[T]) quickSort(arr []T, low, high int) {
 	if low < high {
-		pi := al.partition(arr, low, high)
-		al.quickSort(arr, low, pi-1)
-		al.quickSort(arr, pi+1, high)
+		index := al.partition(arr, low, high)
+		al.quickSort(arr, low, index-1)
+		al.quickSort(arr, index+1, high)
 	}
 }
 
