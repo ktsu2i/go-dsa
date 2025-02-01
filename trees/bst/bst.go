@@ -16,16 +16,16 @@ func New[T constraints.Ordered]() *BinarySearchTree[T] {
 	return &BinarySearchTree[T]{}
 }
 
-func (bst *BinarySearchTree[T]) Insert(v T) {
+func (bst *BinarySearchTree[T]) Insert(value T) {
 	if bst.root == nil {
-		bst.root = &node[T]{value: v}
+		bst.root = &node[T]{value: value}
 	} else {
-		insertNode(bst.root, v)
+		insertNode(bst.root, value)
 	}
 }
 
-func (bst *BinarySearchTree[T]) Contains(v T) bool {
-	return containsNode(bst.root, v)
+func (bst *BinarySearchTree[T]) Contains(value T) bool {
+	return containsNode(bst.root, value)
 }
 
 func (bst *BinarySearchTree[T]) PreOrder() []T {
@@ -48,33 +48,33 @@ func (bst *BinarySearchTree[T]) PostOrder() []T {
 
 // Helper functions
 
-func insertNode[T constraints.Ordered](n *node[T], v T) {
-	if v < n.value {
+func insertNode[T constraints.Ordered](n *node[T], value T) {
+	if value < n.value {
 		// left
 		if n.left == nil {
-			n.left = &node[T]{value: v}
+			n.left = &node[T]{value: value}
 		} else {
-			insertNode(n.left, v)
+			insertNode(n.left, value)
 		}
 	} else {
 		// right
 		if n.right == nil {
-			n.right = &node[T]{value: v}
+			n.right = &node[T]{value: value}
 		} else {
-			insertNode(n.right, v)
+			insertNode(n.right, value)
 		}
 	}
 }
 
-func containsNode[T constraints.Ordered](n *node[T], v T) bool {
+func containsNode[T constraints.Ordered](n *node[T], value T) bool {
 	if n == nil {
 		return false
 	}
 
-	if v < n.value {
-		return containsNode(n.left, v)
-	} else if v > n.value {
-		return containsNode(n.right, v)
+	if value < n.value {
+		return containsNode(n.left, value)
+	} else if value > n.value {
+		return containsNode(n.right, value)
 	} else {
 		return true
 	}
