@@ -20,13 +20,13 @@ I started this project because I believe that creating a Go module like this is 
     - [Singly Linked List](#singly-linked-list)
     - [Doubly Linked List](#doubly-linked-list)
 - Queues
-    - [Queue]()
-    - [Priority Queue]()
-- [Set]()
-- [Stack]()
+    - [Queue](#queue)
+    - [Priority Queue](#priority-queue)
+- [Set](#set)
+- [Stack](#stack)
 - Trees
-    - [Binary Search Tree]()
-    - [Min Heap]()
+    - [Binary Search Tree](#binary-search-tree)
+    - [Min Heap](#min-heap)
 
 ### Array List
 
