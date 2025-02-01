@@ -1,8 +1,9 @@
 package bst_test
 
 import (
-	"go-dsa/trees/bst"
 	"testing"
+
+	"github.com/ktsu2i/go-dsa/trees/bst"
 )
 
 func TestInsert(t *testing.T) {

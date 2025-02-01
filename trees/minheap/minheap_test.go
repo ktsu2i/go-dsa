@@ -1,8 +1,9 @@
 package minheap_test
 
 import (
-	"go-dsa/trees/minheap"
 	"testing"
+
+	"github.com/ktsu2i/go-dsa/trees/minheap"
 )
 
 func TestPush(t *testing.T) {

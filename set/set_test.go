@@ -1,8 +1,9 @@
 package set_test
 
 import (
-	"go-dsa/set"
 	"testing"
+
+	"github.com/ktsu2i/go-dsa/set"
 )
 
 func TestAdd(t *testing.T) {

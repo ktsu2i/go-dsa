@@ -1,8 +1,9 @@
 package doublylinkedlist_test
 
 import (
-	"go-dsa/lists/doublylinkedlist"
 	"testing"
+
+	"github.com/ktsu2i/go-dsa/lists/doublylinkedlist"
 )
 
 func TestAdd(t *testing.T) {
