@@ -44,7 +44,27 @@ I started this project because I believe that creating a Go module like this is 
 #### Usage
 
 ```go
+import "github.com/ktsu2i/go-dsa/lists/arraylist"
 
+func main() {
+    al := arraylist.New[int]()
+
+    al.Add(3) // [3]
+    al.Add(1) // [3, 1]
+    al.Add(2) // [3, 1, 2]
+    al.Add(4) // [3, 1, 2, 4]
+
+    ok := al.Remove(3) // [3, 1, 2], ok: true
+    
+    val, ok := al.Get(0) // val: 3, ok: true
+    
+    size := al.Size() // size: 4
+
+    exists := al.Contains(3) // exists: true
+
+    al.MergeSort() // [1, 2, 3]
+    al.QuickSort() // [1, 2, 3]
+}
 ```
 
 ### Singly Linked List
@@ -60,6 +80,33 @@ I started this project because I believe that creating a Go module like this is 
 | Size | - | int | Returns the number of values in the linked list. |
 | ToSlice | - | []T | Converts the linked list to a slice of type T, preserving the order of values. |
 
+#### Usage
+
+```go
+import "github.com/ktsu2i/go-dsa/lists/linkedlist"
+
+func main() {
+    ll := linkedlist.New[string]()
+
+    ll.Add("A") // ["A"]
+    ll.Add("B") // ["A", "B"]
+    ll.Add("C") // ["A", "B", "C"]
+    ll.Add("D") // ["A", "B", "C", "D"]
+
+    ll.Set(3, "X") // ["A", "B", "C", "X"]
+    
+    ok := ll.Remove(3) // ["A", "B", "C"], ok: true
+    
+    val, ok := ll.Get(0) // val: "A", ok: true
+    
+    size := ll.Size() // size: 3
+
+    slice := ll.ToSlice() // slice: [A B C]
+
+    ll.Clear() // []
+}
+```
+
 ### Doubly Linked List
 
 | Method | Parameters | Returns | Description |
@@ -73,6 +120,33 @@ I started this project because I believe that creating a Go module like this is 
 | Size | - | int | Returns the number of values in the doubly linked list. |
 | ToSlice | - | []T | Converts the doubly linked list to a slice of type T, preserving the order of values. |
 
+#### Usage
+
+```go
+import "github.com/ktsu2i/go-dsa/lists/doublylinkedlist"
+
+func main() {
+    dll := doublylinkedlist.New[string]()
+
+    dll.Add("A") // ["A"]
+    dll.Add("B") // ["A", "B"]
+    dll.Add("C") // ["A", "B", "C"]
+    dll.Add("D") // ["A", "B", "C", "D"]
+
+    dll.Set(3, "X") // ["A", "B", "C", "X"]
+    
+    ok := dll.Remove(3) // ["A", "B", "C"], ok: true
+    
+    val, ok := dll.Get(0) // val: "A", ok: true
+    
+    size := dll.Size() // size: 3
+
+    slice := dll.ToSlice() // slice: [A B C]
+
+    dll.Clear() // []
+}
+```
+
 ### Queue
 
 | Method | Parameters | Returns | Description |
@@ -84,6 +158,29 @@ I started this project because I believe that creating a Go module like this is 
 | Size | - | int | Returns the number of values in the queue. |
 | IsEmpty | - | bool | Returns `true` if empty, otherwise `false`. |
 
+#### Usage
+
+```go
+import "github.com/ktsu2i/go-dsa/queues/queue"
+
+func main() {
+    q := queue.New[string]()
+
+    q.Enqueue("A") // ["A"]
+    q.Enqueue("B") // ["A", "B"]
+    q.Enqueue("C") // ["A", "B", "C"]
+    q.Enqueue("D") // ["A", "B", "C", "D"]
+    
+    ok := q.Dequeue() // ["B", "C", "D"], ok: true
+    
+    front, ok := q.Peek() // front: "B", ok: true
+    
+    size := q.Size() // size: 3
+
+    isEmpty := q.IsEmpty() // isEmpty: false
+}
+```
+
 ### Priority Queue
 
 | Method | Parameters | Returns | Description |
@@ -94,6 +191,29 @@ I started this project because I believe that creating a Go module like this is 
 | Peek | - | (T, bool) | Returns the highest priority value without removing it. Returns `true` if successful, or `false` if the queue is empty. |
 | Size | - | int | Returns the number of values in the priority queue. |
 | IsEmpty | - | bool | Returns `true` if empty, otherwise `false`. |
+
+#### Usage
+
+```go
+import "github.com/ktsu2i/go-dsa/queues/priorityqueue"
+
+func main() {
+    pq := priorityqueue.New[string]()
+
+    pq.Enqueue("A") // ["A"]
+    pq.Enqueue("B") // ["A", "B"]
+    pq.Enqueue("C") // ["A", "B", "C"]
+    pq.Enqueue("D") // ["A", "B", "C", "D"]
+    
+    val, ok := pq.Dequeue() // val: "A", ok: true
+    
+    front, ok := pq.Peek() // front: "B", ok: true
+    
+    size := pq.Size() // size: 3
+
+    isEmpty := pq.IsEmpty() // isEmpty: false
+}
+```
 
 ### Set
 
@@ -112,6 +232,43 @@ I started this project because I believe that creating a Go module like this is 
 | Difference | other *Set[T] | *Set[T] | Returns the difference of the two given sets. |
 | Equals | other *Set[T] | *Set[T] | Returns `true` if the current set and the other set contain exactly the same values; otherwise, returns `false`. |
 
+#### Usage
+
+```go
+import "github.com/ktsu2i/go-dsa/set"
+
+func main() {
+    s1 := set.New[int]()
+
+    s1.Add(1) // [1]
+    s1.Add(2) // [1, 2]
+    s1.Add(3) // [1, 2, 3]
+    s1.Add(4) // [1, 2, 3, 4]
+    
+    val, ok := s1.Remove(3) // val: 4, ok: true
+    
+    exists := s1.Contains(1) // exists: 1
+    
+    size := s1.Size() // size: 3
+
+    slice := s1.Values() // [1 2 3]
+
+    s2 := set.New[int]()
+    s2.Add(3)
+    s2.Add(4)
+    s2.Add(5)
+
+    s := s1.Union(s2) // [1, 2, 3, 4, 5]
+    s = s1.Intersection(s2) // [3]
+    s = s1.Difference(s2) // [1, 2]
+
+    isEqual := s1.Equals(s2) // isEqual: false
+
+    s1.Clear() // []
+    isEmpty := s1.IsEmpty() // isEmpty: true
+}
+```
+
 ### Stack
 
 | Method | Parameters | Returns | Description |
@@ -122,6 +279,29 @@ I started this project because I believe that creating a Go module like this is 
 | Peek | - | (T, bool) | Returns the top value of the queue without removing it. Returns `true` if successful, or `false` if empty. |
 | Size | - | int | Returns the number of values in the stack. |
 | IsEmpty | - | bool | Returns `true` if empty, otherwise `false`. |
+
+#### Usage
+
+```go
+import "github.com/ktsu2i/go-dsa/stack"
+
+func main() {
+    s := stack.New[string]()
+
+    s.Push("A") // ["A"]
+    s.Push("B") // ["A", "B"]
+    s.Push("C") // ["A", "B", "C"]
+    s.Push("D") // ["A", "B", "C", "D"]
+    
+    val, ok := s.Pop() // val: "D", ok: true
+    
+    top, ok := s.Peek() // top: "C", ok: true
+    
+    size := s.Size() // size: 3
+
+    isEmpty := s.IsEmpty() // isEmpty: false
+}
+```
 
 ### Binary Search Tree
 
@@ -134,6 +314,27 @@ I started this project because I believe that creating a Go module like this is 
 | InOrder | - | int | Returns a slice containing the values in in-order traversal order. |
 | PostOrder | - | bool | Returns a slice containing the values in post-order traversal order. |
 
+#### Usage
+
+```go
+import "github.com/ktsu2i/go-dsa/trees/bst"
+
+func main() {
+    bst := bst.New[string]()
+
+    nums := []int{10, 5, 15, 2, 8, 12, 20}
+	for _, v := range nums {
+		bst.Insert(v)
+	}
+    
+    exists := bst.Contains(10) // exists: true
+    
+    order := bst.PreOrder() // [10, 5, 2, 8, 15, 12, 20]
+    order = bst.InOrder() // [2, 5, 8, 10, 12, 15, 20]
+    order = bst.PostOrder() // [2, 8, 5, 12, 20, 15, 10]
+}
+```
+
 ### Min Heap
 
 | Method | Parameters | Returns | Description |
@@ -144,3 +345,26 @@ I started this project because I believe that creating a Go module like this is 
 | Peek | - | (T, bool) | Returns the root of the min heap without removing it. Returns `true` if successful, or `false` if empty. |
 | Size | - | int | Returns the number of values in the min heap. |
 | IsEmpty | - | bool | Returns `true` if empty, otherwise `false`. |
+
+#### Usage
+
+```go
+import "github.com/ktsu2i/go-dsa/trees/minheap"
+
+func main() {
+    h := minheap.New[int]()
+
+    nums := []int{10, 5, 15, 2, 8, 12, 20}
+	for _, v := range nums {
+		h.Push(v)
+	}
+
+    val, ok := h.Pop() // val: 2, ok: true
+    
+    val, ok = h.Peek() // val: 5, ok: true
+
+    size := h.Size() // size: 6
+    
+    isEmpty := h.IsEmpty() // isEmpty: false
+}
+```
