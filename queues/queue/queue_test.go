@@ -1,8 +1,9 @@
 package queue_test
 
 import (
-	"go-dsa/queues/queue"
 	"testing"
+
+	"github.com/ktsu2i/go-dsa/queues/queue"
 )
 
 func TestEnqueue(t *testing.T) {

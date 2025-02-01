@@ -1,4 +1,4 @@
-module go-dsa
+module github.com/ktsu2i/go-dsa
 
 go 1.23.3
 
