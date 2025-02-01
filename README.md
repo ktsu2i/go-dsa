@@ -53,6 +53,8 @@ go mod tidy
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/lists/arraylist"
 
 func main() {
@@ -92,6 +94,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/lists/linkedlist"
 
 func main() {
@@ -132,6 +136,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/lists/doublylinkedlist"
 
 func main() {
@@ -170,6 +176,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/queues/queue"
 
 func main() {
@@ -204,6 +212,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/queues/priorityqueue"
 
 func main() {
@@ -244,6 +254,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/set"
 
 func main() {
@@ -292,6 +304,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/stack"
 
 func main() {
@@ -326,6 +340,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/trees/bst"
 
 func main() {
@@ -358,6 +374,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/trees/minheap"
 
 func main() {
