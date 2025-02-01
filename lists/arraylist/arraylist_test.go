@@ -1,6 +1,7 @@
 package arraylist_test
 
 import (
+	"fmt"
 	"go-dsa/lists/arraylist"
 	"testing"
 )
@@ -107,5 +108,82 @@ func TestContains(t *testing.T) {
 	}
 	if !al.Contains(20) {
 		t.Errorf("Expected to contain 20, but it does not")
+	}
+}
+
+func TestMergeSort(t *testing.T) {
+	al := arraylist.New[int]()
+
+	// 1. Empty
+	al.MergeSort()
+	if al.Size() != 0 {
+		t.Errorf("Expected size 0 after merge sort, but got %d", al.Size())
+	}
+
+	// 2. Size 1
+	al.Add(5)
+	al.MergeSort()
+	val, _ := al.Get(0)
+	if val != 5 {
+		t.Errorf("Expected 5, but got %d", val)
+	}
+
+	// 3. Size 5
+	al.Add(3)
+	al.Add(1)
+	al.Add(4)
+	al.Add(2)
+	fmt.Println(al)
+	al.MergeSort()
+	fmt.Println(al)
+	expected := []int{1, 2, 3, 4, 5}
+	for i, v := range expected {
+		val, _ := al.Get(i)
+		if val != v {
+			t.Errorf("Expected %d at index %d, but got %d", v, i, val)
+		}
+	}
+}
+
+func TestQuickSort(t *testing.T) {
+	al := arraylist.New[int]()
+
+	// 1. Empty
+	al.QuickSort()
+	if al.Size() != 0 {
+		t.Errorf("Expected size 0 after merge sort, but got %d", al.Size())
+	}
+
+	// 2. Size 1
+	al.Add(5)
+	al.QuickSort()
+	val, _ := al.Get(0)
+	if val != 5 {
+		t.Errorf("Expected 5, but got %d", val)
+	}
+
+	// 3. Size 5
+	al.Add(3)
+	al.Add(1)
+	al.Add(4)
+	al.Add(2)
+	al.QuickSort()
+	expected := []int{1, 2, 3, 4, 5}
+	for i, v := range expected {
+		val, _ := al.Get(i)
+		if val != v {
+			t.Errorf("Expected %d at index %d, but got %d", v, i, val)
+		}
+	}
+
+	// 4. Size 6 with duplicated values
+	al.Add(4)
+	al.QuickSort()
+	expected = []int{1, 2, 3, 4, 4, 5}
+	for i, v := range expected {
+		val, _ := al.Get(i)
+		if val != v {
+			t.Errorf("Expected %d at index %d, but got %d", v, i, val)
+		}
 	}
 }
