@@ -1,8 +1,9 @@
 package linkedlist_test
 
 import (
-	"go-dsa/lists/linkedlist"
 	"testing"
+
+	"github.com/ktsu2i/go-dsa/lists/linkedlist"
 )
 
 func TestAdd(t *testing.T) {

@@ -1,8 +1,9 @@
 package stack_test
 
 import (
-	"go-dsa/stack"
 	"testing"
+
+	"github.com/ktsu2i/go-dsa/stack"
 )
 
 func TestPush(t *testing.T) {

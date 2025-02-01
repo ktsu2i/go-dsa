@@ -2,8 +2,9 @@ package arraylist_test
 
 import (
 	"fmt"
-	"go-dsa/lists/arraylist"
 	"testing"
+
+	"github.com/ktsu2i/go-dsa/lists/arraylist"
 )
 
 func TestAdd(t *testing.T) {

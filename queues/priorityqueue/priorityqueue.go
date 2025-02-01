@@ -1,8 +1,7 @@
 package priorityqueue
 
 import (
-	"go-dsa/trees/minheap"
-
+	"github.com/ktsu2i/go-dsa/trees/minheap"
 	"golang.org/x/exp/constraints"
 )
 
