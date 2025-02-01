@@ -46,7 +46,7 @@ func (al *ArrayList[T]) Contains(value T) bool {
 }
 
 func (al *ArrayList[T]) MergeSort() {
-	al.mergeSort(al.values)
+	al.values = al.mergeSort(al.values)
 }
 
 func (al *ArrayList[T]) QuickSort() {
