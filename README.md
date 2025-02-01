@@ -13,6 +13,15 @@ The purpose of creating this module is as follows:
 
 I started this project because I believe that creating a Go module like this is one of the good ways to achieve these goals.
 
+## Installation
+
+To install this module, just run these commands:
+
+```
+go get "github.com/ktsu2i/go-dsa"
+go mod tidy
+```
+
 ## Data Structures
 
 - Lists
