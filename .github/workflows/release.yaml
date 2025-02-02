@@ -62,6 +62,6 @@ jobs:
         with:
           tag_name: ${{ steps.release_tag.outputs.release_tag }}
           release_name: Release ${{ steps.release_tag.outputs.release_tag }}
-          body: ${{ steps.release_tag.outputs.release_note_body }}
-          draft: true
+          body: ${{ steps.release_note_body.outputs.release_note_body }}
+          draft: false
           prerelease: false
