@@ -13,6 +13,15 @@ The purpose of creating this module is as follows:
 
 I started this project because I believe that creating a Go module like this is one of the good ways to achieve these goals.
 
+## Installation
+
+To install this module, just run these commands:
+
+```
+go get "github.com/ktsu2i/go-dsa"
+go mod tidy
+```
+
 ## Data Structures
 
 - Lists
@@ -44,6 +53,8 @@ I started this project because I believe that creating a Go module like this is 
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/lists/arraylist"
 
 func main() {
@@ -83,6 +94,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/lists/linkedlist"
 
 func main() {
@@ -123,6 +136,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/lists/doublylinkedlist"
 
 func main() {
@@ -161,6 +176,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/queues/queue"
 
 func main() {
@@ -195,6 +212,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/queues/priorityqueue"
 
 func main() {
@@ -235,6 +254,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/set"
 
 func main() {
@@ -283,6 +304,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/stack"
 
 func main() {
@@ -317,6 +340,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/trees/bst"
 
 func main() {
@@ -349,6 +374,8 @@ func main() {
 #### Usage
 
 ```go
+package main
+
 import "github.com/ktsu2i/go-dsa/trees/minheap"
 
 func main() {
